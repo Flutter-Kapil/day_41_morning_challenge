@@ -15,15 +15,23 @@ List<List> threeMovesToWin(List<List> towers) {
 // Tower of Hanoi - N Moves
 // Write a function which will check win in N moves for a given state of Tower of Hanoi
 // The function will take an additional parameter 'n' (number of moves)
+List<List> nMoveToWin(List<List> towers, int n) {
+  if (n == 1) {
+    return oneMoveToWin(towers);
+  }
+  List<List> allPossibleMoves = hanoiPossibleMoves(towers);
+  for (int i = 0; i < allPossibleMoves.length; i++) {
+    if (nMoveToWin(allPossibleMoves[i], n-1)!=null) {
+      return allPossibleMoves[i];
+    }
+  }
 
+  return null;
+}
 
 // Stretch: Show all moves which lead to win, given a state.
 main() {
-  List<List> GameInstance0101 = [
-    [1],
-    [],
-    [2,3, 4]
-  ];
+  List<List> GameInstance0101 = [[1],[],[2,3, 4]];
   print(nMoveToWin(GameInstance0101,1));
 
   List<List> GameInstance0201 = [

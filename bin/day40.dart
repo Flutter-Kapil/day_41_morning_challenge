@@ -38,19 +38,7 @@ List<List> copyList(List<List> copyFrom) {
 
 // Challenge
 // Find the best move given the state of Towers of Hanoi board
-List<List> nMoveToWin(List<List> towers, int n) {
-  if (n == 1) {
-    return oneMoveToWin(towers);
-  }
-  List<List> allPossibleMoves = hanoiPossibleMoves(towers);
-  for (int i = 0; i < allPossibleMoves.length; i++) {
-    if (nMoveToWin(allPossibleMoves[i], n-1)!=null) {
-      return allPossibleMoves[i];
-    }
-  }
 
-  return null;
-}
 
 List<List> fourMoveToWin(List<List> towers) {
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
