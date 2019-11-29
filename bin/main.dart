@@ -20,9 +20,9 @@ List<List> threeMovesToWin(List<List> towers) {
 // Stretch: Show all moves which lead to win, given a state.
 main() {
   List<List> GameInstance0301 = [
-    [1,2,3,4],
+    [2,1],
     [],
-    []
+    [3,4]
   ];
-  print(nMoveToWin(GameInstance0301, 14));
+  print(nMoveToWin(GameInstance0301, 3));
 }

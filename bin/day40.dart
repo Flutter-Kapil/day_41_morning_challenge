@@ -35,61 +35,54 @@ List<List> copyList(List<List> copyFrom) {
   }
   return copyTo;
 }
+
 // Challenge
 // Find the best move given the state of Towers of Hanoi board
 List<List> nMoveToWin(List<List> towers, int n) {
-
-  if(n==0){
-    return null;
+  if (n == 1) {
+    return oneMoveToWin(towers);
   }
-  n--;
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
   for (int i = 0; i < allPossibleMoves.length; i++) {
-    if(isThisWinningMove(allPossibleMoves[i])){
-      print('n:$n');
-      print(allPossibleMoves[i]);
-      return null;
-    }else
-     {
-//      print(allPossibleMoves[i]);
-      nMoveToWin(allPossibleMoves[i], n);
-//      return allPossibleMoves[i];
+    if (nMoveToWin(allPossibleMoves[i], n-1)!=null) {
+      return allPossibleMoves[i];
     }
-//    else{
-//
-//      return oneMoveToWin(allPossibleMoves[i]);
-//    }
   }
+
   return null;
 }
+
 List<List> fourMoveToWin(List<List> towers) {
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
   for (int i = 0; i < allPossibleMoves.length; i++) {
-    if (threeMoveToWin(allPossibleMoves[i])!=null) {
+    if (threeMoveToWin(allPossibleMoves[i]) != null) {
       return allPossibleMoves[i];
     }
   }
   return null;
 }
+
 List<List> threeMoveToWin(List<List> towers) {
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
   for (int i = 0; i < allPossibleMoves.length; i++) {
-    if (twoMoveToWin(allPossibleMoves[i])!=null) {
+    if (twoMoveToWin(allPossibleMoves[i]) != null) {
       return allPossibleMoves[i];
     }
   }
   return null;
 }
+
 //-------
 List<List> twoMoveToWin(List<List> towers) {
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
   for (int i = 0; i < allPossibleMoves.length; i++) {
-    if (oneMoveToWin(allPossibleMoves[i])!=null) {
+    if (oneMoveToWin(allPossibleMoves[i]) != null) {
       return allPossibleMoves[i];
     }
   }
   return null;
 }
+
 //-------------
 List<List> oneMoveToWin(List<List> towers) {
   List<List> allPossibleMoves = hanoiPossibleMoves(towers);
@@ -105,10 +98,6 @@ List<List> oneMoveToWin(List<List> towers) {
 bool isThisWinningMove(List possibleMov) {
   return (possibleMov[0].isEmpty && possibleMov[1].isEmpty);
 }
-
-
-
-
 
 //main() {
 //  List<List> GameInstance0101 = [
