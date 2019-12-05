@@ -31,31 +31,42 @@ List<List> nMoveToWin(List<List> towers, int n) {
   return null;
 }
 
-allMovesToWin(List<List> towers) {
-  ///-------------
-  ///loop 1
+
+List<List> nextMove4BestWin(List<List> towers) {
   int n = 1;
   do {
     if (nMoveToWin(towers, n) != null) {
-      print('n here is $n');
-      print(nMoveToWin(towers, n));
+      return nMoveToWin(towers, n);
     }
     n++;
   }while(nMoveToWin(towers, n-1) == null);
-
-  ///---------------
+  return null;
 }
-
+int numberOfMovesForBestWin(List<List> towers) {
+  int n = 1;
+  do {
+    if (nMoveToWin(towers, n) != null) {
+      return n;
+    }
+    n++;
+  }while(nMoveToWin(towers, n-1) == null);
+  return null;
+}
+allMovesToWin(List<List> towers) {
+  int n=numberOfMovesForBestWin(towers);
+  while(n>=1){
+    print(nextMove4BestWin(towers));
+    towers = nextMove4BestWin(towers);
+    n--;
+  }
+}
 // Stretch: Show all moves which lead to win, given a state.
 main() {
-  print(allMovesToWin([
-    [1, 2, 3, 4],
+
+  allMovesToWin([
+    [1,2,3,4,5],
     [],
     []
-  ]));
-//  print(nMoveToWin([
-//    [1, 2, 3, 4],
-//    [],
-//    []
-//  ], 15));
+  ]);
+
 }
