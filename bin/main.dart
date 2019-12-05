@@ -55,8 +55,9 @@ int numberOfMovesForBestWin(List<List> towers) {
 allMovesToWin(List<List> towers) {
   int n=numberOfMovesForBestWin(towers);
   while(n>=1){
-    print(nextMove4BestWin(towers));
-    towers = nextMove4BestWin(towers);
+    List<List> nextMove = nextMove4BestWin(towers);
+    print('next Move : $nextMove');
+    towers = nextMove;
     n--;
   }
 }
